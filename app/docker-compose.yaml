@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+  web:
+    container_name: real_state-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: pipenv run gunicorn real_state.wsgi --bind 0.0.0.0:8000
+    env_file: .env
+    image: docker.teste
+    depends_on:
+    - postgres
+    restart: on-failure
+    volumes:
+    - .:/app
+  caddy:
+    image: caddy:2.3.0-alpine
+    container_name: caddy
+    links:
+    - web:web
+    ports:
+    - 80:80
+    - 443:443
+    volumes:
+    - ./Caddyfile:/etc/caddy/Caddyfile
+  migrations:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: pipenv run python manage.py migrate
+    env_file: .env
+    image: docker.teste
+    depends_on:
+    - postgres
+    restart: on-failure
+    volumes:
+    - .:/app
+  postgres:
+    container_name: real_state-postgres
+    image: postgres:13.3-alpine
+    volumes:
+    - postgres_data:/var/lib/postgresql/data/
+    restart: on-failure
+    env_file: .env
+volumes:
+  postgres_data: null
