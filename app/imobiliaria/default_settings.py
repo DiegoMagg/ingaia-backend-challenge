@@ -28,7 +28,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'real_state.urls'
+ROOT_URLCONF = 'imobiliaria.urls'
 
 TEMPLATES = [
     {
@@ -46,12 +46,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'real_state.wsgi.application'
+WSGI_APPLICATION = 'imobiliaria.wsgi.application'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'real_state_database',
+        'NAME': 'imobiliaria_database',
     }
 }
 

@@ -1,0 +1,18 @@
+[
+  {
+    "model": "loteamento.loteamento",
+    "pk": 1,
+    "fields": {
+      "nome": "loteamento x",
+      "valor": "1209.02"
+    }
+  },
+  {
+    "model": "loteamento.loteamento",
+    "pk": 2,
+    "fields": {
+      "nome": "loteamento y",
+      "valor": "1433.36"
+    }
+  }
+]

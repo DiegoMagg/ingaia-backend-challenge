@@ -10,6 +10,7 @@ gunicorn = "*"
 djangorestframework = "*"
 drf-yasg = "*"
 pyyaml = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.9"
