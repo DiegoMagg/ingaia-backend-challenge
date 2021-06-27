@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class CalcDataConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'loteamento'
+    name = 'empreendimento'
