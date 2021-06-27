@@ -11,6 +11,7 @@ djangorestframework = "*"
 drf-yasg = "*"
 pyyaml = "*"
 django-filter = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.9"

@@ -1,0 +1,14 @@
+language: python
+python:
+  - "3.9"
+install:
+  - cd app
+  - pipenv install --dev
+  - pipenv run ./manage.py migrate
+  - mkdir staticfiles
+script:
+  - pipenv run coverage run manage.py test
+  - pipenv run coverage xml
+after_success:
+  - cd app
+  - bash <(curl -s https://codecov.io/bash)

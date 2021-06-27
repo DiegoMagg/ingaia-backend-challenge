@@ -26,7 +26,7 @@ class EmpreendimentoView(generics.CreateAPIView):
     serializer_class = EmpreendimentoSerializer
 
 
-class EmpreendimentoMetroQuadradoView(APIView):
+class EmpreendimentoMetroQuadradoView(APIView):  # pragma: no cover
 
     def get(self, request, **kwargs):
         serializer = ValorEmpreendimentoSerializer(data=kwargs)

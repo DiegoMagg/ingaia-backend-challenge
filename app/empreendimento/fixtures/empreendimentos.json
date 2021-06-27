@@ -1,0 +1,26 @@
+[
+  {
+    "model": "empreendimento.empreendimento",
+    "pk": 1,
+    "fields": {
+      "nome": "teste",
+      "valor_metro_quadrado": "1000.00"
+    }
+  },
+  {
+    "model": "empreendimento.empreendimento",
+    "pk": 2,
+    "fields": {
+      "nome": "empreendimento x",
+      "valor_metro_quadrado": "1209.02"
+    }
+  },
+  {
+    "model": "empreendimento.empreendimento",
+    "pk": 3,
+    "fields": {
+      "nome": "empreendimento y",
+      "valor_metro_quadrado": "1191.84"
+    }
+  }
+]

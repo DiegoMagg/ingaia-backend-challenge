@@ -50,7 +50,7 @@ WSGI_APPLICATION = 'imobiliaria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'imobiliaria_database',
+        'NAME': 'db.sqlite3',
     }
 }
 

@@ -35,10 +35,6 @@ class ValorEmpreendimentoSerializer(BaseValorMetroSerializer):
         decimal_places=2,
     )
 
-    def validate_nome(self, nome):
-        self.queryset = get_object_or_404(Empreendimento, nome__icontains=nome)
-        return nome
-
     def validate_quantidade_metros_quadrados(self, quantidade):
         if quantidade not in range(10, 10001):
             raise serializers.ValidationError(
@@ -46,10 +42,14 @@ class ValorEmpreendimentoSerializer(BaseValorMetroSerializer):
             )
         return quantidade
 
-    def gera_valor_total_da_metragem_solicitada(self):
-        response = requests.get(
-            f'{environ["API_BASE_URL"]}/valor-metro-quadrado/{self.queryset.nome}',
+    def gera_valor_total_da_metragem_solicitada(self):  # pragma: no cover
+        queryset = get_object_or_404(Empreendimento, nome=self.data['nome'])
+        json = requests.get(
+            f'{environ["API_BASE_URL"]}/{environ["API_VERSION"]}/'
+            f'valor-metro-quadrado/{queryset.nome}',
+        ).json()
+        valor_metro_quadrado = Decimal(
+            json['valor_metro_quadrado'].replace('.', '').replace(',', '.')[2:],
         )
-        valor_metro_quadrado = Decimal(response.json()['valor_metro_quadrado'])
         total = self.validated_data['quantidade_metros_quadrados'] * valor_metro_quadrado
         self.validated_data['total'] = self.trata_valores_monetarios(total)

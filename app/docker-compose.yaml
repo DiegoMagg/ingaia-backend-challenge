@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
 
-  web:
-    container_name: imobiliaria-web
+  api:
+    container_name: api-imobiliaria
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,17 +15,6 @@ services:
     restart: on-failure
     volumes:
     - .:/app
-
-  caddy:
-    image: caddy:2.3.0-alpine
-    container_name: caddy
-    links:
-    - web:web
-    ports:
-    - 80:80
-    - 443:443
-    volumes:
-    - ./Caddyfile:/etc/caddy/Caddyfile
 
   migrations:
     build:
@@ -44,7 +33,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: pipenv run python manage.py loaddata preco_metro_quadrado.json
+    command: pipenv run python manage.py loaddata empreendimentos.json
     env_file: .env
     image: api_imobiliaria
     depends_on:
