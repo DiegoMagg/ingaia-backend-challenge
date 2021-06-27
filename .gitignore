@@ -128,4 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-app/real_state_database
+app/imobiliaria_database

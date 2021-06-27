@@ -23,5 +23,5 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', schema_view.with_ui('swagger', cache_timeout=0)),
-    path('', include('api.urls')),
+    path(f'{API_VERSION}/', include('api.urls')),
 ]
