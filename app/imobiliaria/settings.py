@@ -1,5 +1,14 @@
 from os import environ
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 from .default_settings import *
+
+sentry_sdk.init(
+    dsn=environ.get('SENTRY_DSN', ''),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+)
+
 
 DEBUG = False
 
