@@ -12,6 +12,7 @@ drf-yasg = "*"
 pyyaml = "*"
 django-filter = "*"
 coverage = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.9"

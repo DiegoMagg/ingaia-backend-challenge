@@ -7,11 +7,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: pipenv run gunicorn imobiliaria.wsgi --bind 0.0.0.0:8000
+    command: pipenv run gunicorn imobiliaria.wsgi --bind 0.0.0.0:9001
     env_file: .env
     image: api_imobiliaria
-    depends_on:
-    - postgres
     restart: on-failure
     volumes:
     - .:/app
@@ -23,8 +21,6 @@ services:
     command: pipenv run python manage.py migrate
     env_file: .env
     image: api_imobiliaria
-    depends_on:
-    - postgres
     restart: on-failure
     volumes:
     - .:/app
