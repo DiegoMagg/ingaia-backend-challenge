@@ -1,7 +1,9 @@
+from os import environ
 from .default_settings import *
 
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
 INSTALLED_APPS += [
     'api',
