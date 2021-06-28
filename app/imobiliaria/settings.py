@@ -12,7 +12,7 @@ sentry_sdk.init(
 
 DEBUG = False
 
-ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split(',')
 
 INSTALLED_APPS += [
     'api',

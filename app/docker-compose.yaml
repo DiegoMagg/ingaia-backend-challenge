@@ -3,7 +3,6 @@ version: '3.7'
 services:
 
   api:
-    container_name: api-imobiliaria
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,8 +10,12 @@ services:
     env_file: .env
     image: api_imobiliaria
     restart: on-failure
+    ports:
+      - "9001:9001"
     volumes:
     - .:/app
+    expose:
+      - "9001"
 
   migrations:
     build:
