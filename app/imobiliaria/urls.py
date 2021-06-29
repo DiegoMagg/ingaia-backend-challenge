@@ -17,6 +17,7 @@ schema_view = get_schema_view(
         description=DESCRIPTION,
         default_version=API_VERSION,
     ),
+    url='https://diegomagg.com.br/v1/',
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
