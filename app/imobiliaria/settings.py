@@ -1,4 +1,4 @@
-from os import environ
+from os import environ, path
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from .default_settings import *
@@ -10,7 +10,7 @@ sentry_sdk.init(
 )
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split(',')
 
@@ -40,3 +40,7 @@ REST_FRAMEWORK = {
 }
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [path.join(BASE_DIR, 'static')]
