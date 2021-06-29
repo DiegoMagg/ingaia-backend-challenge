@@ -21,7 +21,7 @@ class ValorMetroQuadradoView(APIView):
         return Response(serializer.validated_data)
 
 
-class EmpreendimentoView(generics.CreateAPIView):
+class EmpreendimentoView(generics.ListAPIView):
     queryset = Empreendimento.objects.all()
     serializer_class = EmpreendimentoSerializer
 

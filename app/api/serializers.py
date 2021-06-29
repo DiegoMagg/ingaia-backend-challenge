@@ -45,7 +45,7 @@ class ValorEmpreendimentoSerializer(BaseValorMetroSerializer):
     def gera_valor_total_da_metragem_solicitada(self):  # pragma: no cover
         queryset = get_object_or_404(Empreendimento, nome=self.data['nome'])
         json = requests.get(
-            f'{environ["API_BASE_URL"]}/{environ["API_VERSION"]}/'
+            f'https://{environ["API_URL"]}/{environ["API_VERSION"]}/'
             f'valor-metro-quadrado/{queryset.nome}',
         ).json()
         valor_metro_quadrado = Decimal(
