@@ -8,7 +8,7 @@ API_VERSION = environ.get('API_VERSION')
 
 DESCRIPTION = '''
     Esta api é uma demonstração do desafio backend proposto pela inGaia e
-    estará disponível para avaliação até 10/07/2021.
+    estará disponível para avaliação até 09/07/2021.
 '''
 
 api_version_one = get_schema_view(

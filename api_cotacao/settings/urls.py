@@ -8,10 +8,10 @@ API_VERSION = environ.get('API_VERSION')
 
 DESCRIPTION = '''
     Esta api é uma demonstração do desafio backend proposto pela inGaia e
-    estará disponível para avaliação até 02/07/2021.
+    estará disponível para avaliação até 09/07/2021.
 '''
 
-schema_view = get_schema_view(
+version_one = get_schema_view(
     openapi.Info(
         title='API para cálculo de valor por metro quadrado',
         description=DESCRIPTION,
@@ -23,6 +23,6 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path(f'{API_VERSION}/', schema_view.with_ui('swagger', cache_timeout=0)),
+    path(f'{API_VERSION}/', version_one.with_ui('swagger', cache_timeout=0)),
     path(f'{API_VERSION}/', include('api.urls')),
 ]
