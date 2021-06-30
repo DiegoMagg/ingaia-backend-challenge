@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+
+  api-consulta-valores:
+    container_name: api-consulta-valores
+    build:
+      context: .
+      dockerfile: ../Dockerfile
+    command: pipenv run gunicorn settings.wsgi --bind 0:9001
+    env_file: .env
+    network_mode: host
+    image: api-consulta_valor:1.0.0
+    restart: on-failure
+    volumes:
+      - .:/app
+
+  migrations:
+    build:
+      context: .
+      dockerfile: ../Dockerfile
+    command: pipenv run python manage.py migrate
+    env_file: .env
+    image: api-consulta_valor:1.0.0
+    restart: on-failure
+    volumes:
+      - .:/app
+
+  fixtures:
+    build:
+      context: .
+      dockerfile: ../Dockerfile
+    command: pipenv run python manage.py loaddata empreendimentos.json
+    env_file: .env
+    image: api-consulta:1.0.0
+    depends_on:
+      - migrations
+    volumes:
+      - .:/app

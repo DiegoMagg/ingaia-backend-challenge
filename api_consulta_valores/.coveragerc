@@ -1,0 +1,15 @@
+[run]
+source = .
+
+omit =
+    */tests/*,
+    */migrations/*,
+    */urls.py,
+    */settings/sandbox.py,
+    */wsgi.py,
+    manage.py,
+    *__init__.py,
+    env/*,
+
+[report]
+show_missing = true
