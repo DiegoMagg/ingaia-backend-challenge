@@ -6,17 +6,7 @@ from rest_framework import serializers
 
 class CotacaoMetroQuadradoSerializer(serializers.Serializer):
     nome = serializers.CharField(min_length=4, max_length=60)
-    quantidade_metros_quadrados = serializers.DecimalField(
-        max_digits=5,
-        decimal_places=2,
-    )
-
-    def validate_quantidade_metros_quadrados(self, quantidade):
-        if quantidade not in range(10, 10001):
-            raise serializers.ValidationError(
-                'A quantidade de metros quadrados deve ser entre 10 e 10000.',
-            )
-        return quantidade
+    quantidade_metros_quadrados = serializers.IntegerField(min_value=10, max_value=10000)
 
     def gera_valor_total_da_metragem_solicitada(self):  # pragma: no cover
         url = (

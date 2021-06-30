@@ -10,7 +10,7 @@ sentry_sdk.init(
 )
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split(',')
 
