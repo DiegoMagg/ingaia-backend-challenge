@@ -2,15 +2,15 @@ version: '3.7'
 
 services:
 
-  api-consulta-valores:
-    container_name: api-consulta-valores
+  api-consulta:
+    container_name: api-consulta
     build:
       context: .
       dockerfile: ../Dockerfile
-    command: pipenv run gunicorn settings.wsgi --bind 0:9001
+    command: pipenv run gunicorn settings.wsgi --bind 0:9000
     env_file: .env
     network_mode: host
-    image: api-consulta_valor:1.0.0
+    image: api-consulta:1.0.0
     restart: on-failure
     volumes:
       - .:/app
@@ -21,7 +21,7 @@ services:
       dockerfile: ../Dockerfile
     command: pipenv run python manage.py migrate
     env_file: .env
-    image: api-consulta_valor:1.0.0
+    image: api-consulta:1.0.0
     restart: on-failure
     volumes:
       - .:/app

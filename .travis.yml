@@ -2,13 +2,17 @@ language: python
 python:
   - "3.9"
 install:
-  - cd app
+  - cd api_consulta
   - pipenv install --dev
   - pipenv run ./manage.py migrate
   - mkdir staticfiles
+  - cd ..
+  - cd api_calculo
+  - pipenv install --dev
+  - pipenv run ./manage.py migrate
+  - mkdir staticfile
 script:
-  - pipenv run coverage run manage.py test
-  - pipenv run coverage xml
-after_success:
-  - cd app
-  - bash <(curl -s https://codecov.io/bash)
+  - pipenv run manage.py test
+  - cd ..
+  - cd api_consulta
+  - pipenv run manage.py test
