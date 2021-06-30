@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+
+  api-cotacao:
+    container_name: api-cotacao
+    build:
+      context: .
+      dockerfile: ../Dockerfile
+    command: pipenv run gunicorn settings.wsgi --bind 0:9010
+    env_file: .env
+    network_mode: host
+    image: api-cotacao:1.0.0
+    restart: on-failure
+    volumes:
+      - .:/app
