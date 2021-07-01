@@ -9,7 +9,7 @@ class CotacaoMetroQuadradoSerializer(serializers.Serializer):
     nome = serializers.CharField(min_length=4, max_length=60)
     quantidade_metros_quadrados = serializers.IntegerField(min_value=10, max_value=10000)
 
-    def gera_valor_total_da_metragem_solicitada(self):  # pragma: no cover
+    def gera_valor_total_da_metragem_solicitada(self):
         url = (
             f'{environ["API_CONSULTA_URL"]}/'
             f'valor-metro-quadrado/{self.validated_data.get("nome")}'

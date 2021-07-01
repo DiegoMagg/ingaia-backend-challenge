@@ -2,6 +2,7 @@ from decimal import Decimal
 from unittest.mock import patch
 from rest_framework.test import APIClient
 from django.test import TestCase
+from django.http import Http404
 from api.serializers import CotacaoMetroQuadradoSerializer
 
 
@@ -45,3 +46,14 @@ class IntegracaoTestCase(TestCase):
                 'total': Decimal('120902.0000'),
             },
         )
+
+    @patch('requests.get')
+    def test_endpoint_cotacao_deve_retornar_404_quando_registro_inexiste(self, mock_get):
+        mock_get.return_value.ok = False
+        mock_get.return_value.json.return_value = {'detail': 'Não encontrado'}
+        serializer = CotacaoMetroQuadradoSerializer(
+            data={'nome': 'teste', 'quantidade_metros_quadrados': 100.00},
+        )
+        serializer.is_valid()
+        with self.assertRaises(Http404):
+            serializer.gera_valor_total_da_metragem_solicitada()
