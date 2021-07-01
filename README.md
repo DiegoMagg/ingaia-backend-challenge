@@ -16,13 +16,13 @@ Este repositório contêm o código em resposta ao teste técnico proposto pela 
 
 A definição dos serviços encontram-se nos arquivos docker-compose.yaml que são:
 
-# API Consulta (API_1)
+# API Consulta (API1)
 1. **api-consulta** - Servidor WSGI gunicorn para aplicação.
 2. **migrations** - Executa as migrações das tabelas do BD sempre que houver modificação nos arquivos de migration.
 3. **fixtures** - Popula o banco de dados com exemplos para teste dos endpoints.
 
 ## Variáveis de ambiente
-|       Variavel        |      Exemplos      |     Definição      |
+|       Variável        |      Exemplos      |     Definição      |
 |-----------------------|--------------------|-----------|
 |DJANGO_SETTINGS_MODULE |`"settings.modulo"`             |Define qual *settings* usar|
 |API_VERSION            |`"v1"`                          |Define a versão da API nas urls e no Swagger|
@@ -31,11 +31,11 @@ A definição dos serviços encontram-se nos arquivos docker-compose.yaml que s�
 |SENTRY_DSN             |`"https:/sentry.com"`|URL para monitorar erros na aplicação *online*  (opcional)|
 |API_URL                |`"https:/api-consulta.diegomagg.com.br"`|URL *root* da api (necessário para que o swagger use HTTPS nas requisições)|
 
-# API Cotação
+# API Cotação (API2)
 1. **api-cotacao** - Servidor WSGI gunicorn para aplicação.
 
-## Variáveis de ambiente (API_2)
-|       Variavel        |   Exemplos         |     Definição      |
+## Variáveis de ambiente
+|       Variável        |   Exemplos         |     Definição      |
 |-----------------------|--------------------|-----------|
 |DJANGO_SETTINGS_MODULE |`"settings.modulo"`             |Define qual *settings* usar|
 |API_VERSION            |`"v1"`                          |Define a versão da API nas urls e no Swagger|
