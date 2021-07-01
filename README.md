@@ -19,15 +19,15 @@ A definição dos serviços encontram-se nos arquivos docker-compose.yaml que s�
 ## Variáveis de ambiente
 |                       |                    |           |
 |-----------------------|--------------------|-----------|
-|DJANGO_SETTINGS_MODULE |`"settings.modulo"`             |define qual settings usar|
-|API_VERSION            |`"v1"`                          |define a versão da API nas urls e no Swagger|
+|DJANGO_SETTINGS_MODULE |`"settings.modulo"`             |Define qual *settings* usar|
+|API_VERSION            |`"v1"`                          |Define a versão da API nas urls e no Swagger|
 |DJANGO_SECRET_KEY      |`"token"`                       |Token usado pelo Django  |
-|ALLOWED_HOSTS          |`"exemplo.com,api-consulta` | hosts separados por vírgula|
-|SENTRY_DSN             |`"https:/sentry.com"`|url para monitorar erros na aplicação online|
-|API_URL                |`"https:/api-consulta.diegomagg.com.br"`|URL root da api (necessário para que o swagger use HTTPS nas requisições)|
-<br>
+|ALLOWED_HOSTS          |`"exemplo.com,api-consulta` |*Hosts* separados por vírgula|
+|SENTRY_DSN             |`"https:/sentry.com"`|URL para monitorar erros na aplicação *online*|
+|API_URL                |`"https:/api-consulta.diegomagg.com.br"`|URL *root* da api (necessário para que o swagger use HTTPS nas requisições)|
 # API Cotação
-1. api-cotacao - Servidor WSGI gunicorn para aplicação.
+1. **api-cotacao** - Servidor WSGI gunicorn para aplicação.
+
 
 ## Variáveis de ambiente (API_2)
 |                       |                    |           |

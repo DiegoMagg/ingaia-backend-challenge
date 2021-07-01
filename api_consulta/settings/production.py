@@ -44,3 +44,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [path.join(BASE_DIR, 'static')]
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+}

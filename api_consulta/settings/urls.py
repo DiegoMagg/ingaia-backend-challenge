@@ -17,12 +17,11 @@ api_version_one = get_schema_view(
         description=DESCRIPTION,
         default_version=API_VERSION,
     ),
-    url=environ.get('API_URL'),
-    public=True,
     permission_classes=(permissions.AllowAny,),
+    url=environ.get('API_URL'),
 )
 
 urlpatterns = [
-    path(f'{API_VERSION}/', api_version_one.with_ui('swagger', cache_timeout=0)),
+    path('', api_version_one.with_ui('swagger', cache_timeout=0)),
     path(f'{API_VERSION}/', include('api.urls')),
 ]
