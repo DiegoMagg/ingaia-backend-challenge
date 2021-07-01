@@ -7,6 +7,11 @@
 
 Este repositório contêm o código em resposta ao teste técnico proposto pela inGaia.
 
+# Requirements:
+
+1. [Pipenv](https://pipenv.pypa.io/en/latest/)
+2. [Docker](https://docs.docker.com/get-docker/)
+3. [Docker Compose](https://docs.docker.com/compose/install/)
 
 
 A definição dos serviços encontram-se nos arquivos docker-compose.yaml que são:
@@ -25,29 +30,25 @@ A definição dos serviços encontram-se nos arquivos docker-compose.yaml que s�
 |ALLOWED_HOSTS          |`"exemplo.com,api-consulta` |*Hosts* separados por vírgula|
 |SENTRY_DSN             |`"https:/sentry.com"`|URL para monitorar erros na aplicação *online*|
 |API_URL                |`"https:/api-consulta.diegomagg.com.br"`|URL *root* da api (necessário para que o swagger use HTTPS nas requisições)|
+
 # API Cotação
 1. **api-cotacao** - Servidor WSGI gunicorn para aplicação.
-
 
 ## Variáveis de ambiente (API_2)
 |                       |                    |           |
 |-----------------------|--------------------|-----------|
-|DJANGO_SETTINGS_MODULE |`"settings.modulo"`             |define qual settings usar|
-|API_VERSION            |`"v1"`                          |define a versão da API nas urls e no Swagger|
-|DJANGO_SECRET_KEY      |`"token"`                       |Token usado pelo Django  |
+|DJANGO_SETTINGS_MODULE |`"settings.modulo"`             |Define qual *settings* usar|
+|API_VERSION            |`"v1"`                          |Define a versão da API nas urls e no Swagger|
+|DJANGO_SECRET_KEY      |`"token"`                       |*Token* usado pelo Django  |
 |ALLOWED_HOSTS          |`"exemplo.com,api-cotacao"` |*Hosts* separados por vírgula|
 |SENTRY_DSN             |`"https:/sentry.com"`|URL para monitorar erros na aplicação *online*|
 |API_URL                |`"https:/api-cotacao.diegomagg.com.br"`|URL *root* da api (necessário para que o swagger use HTTPS nas requisições)|
 |API_CONSULTA_URL|`"http://api-consulta"` |URL base onde a *view* de cotação busca as informações da **API_1**|
 
 
-## Requirements:
-
-1. [Pipenv](https://pipenv.pypa.io/en/latest/)
-2. [Docker](https://docs.docker.com/get-docker/)
-3. [Docker Compose](https://docs.docker.com/compose/install/)
-
 ## Testando as APIs:
+
+
 
 [API_1 - Consulta](https://api-consulta.diegomagg.com.br/v1) - Esta API pode ser testado a partir do swagger.
 Após clicar no botão *"Try it out"*, digite "empreendimento x" no campo nome e clique em
@@ -101,3 +102,40 @@ Após clicar no botão *"Try it out"*, digite "empreendimento x" no campo nome e
 }
 ```
 O mesmo se aplica caso o valor seja maior que 10000
+
+
+# Rodando as aplicações local
+```
+$ git clone git@github.com:DiegoMagg/ingaia-backend-challenge.git
+$ cd ingaia-backend-challenge && touch api_consulta/.env && touch api_cotacao/.env
+```
+
+api_consulta/.env
+
+```
+DJANGO_SETTINGS_MODULE=settings.test
+API_VERSION="v1"
+DJANGO_SECRET_KEY="^u$2f)9(@#a591w3i+b+i0+m30d86zkcn(v)t4!j)3-)mc21o="
+ALLOWED_HOSTS="localhost"
+SENTRY_DSN=""
+API_URL='http://localhost:9000'
+```
+
+api_cotacao/.env
+
+```
+DJANGO_SETTINGS_MODULE=settings.test
+API_VERSION="v1"
+DJANGO_SECRET_KEY="t$%hq&oofr8g@a#332rd542bnj(h6dwx#da7+f0k)-)5-u_2=@"
+ALLOWED_HOSTS="localhost"
+SENTRY_DSN=""
+API_URL="http://localhost:9010"
+API_CONSULTA_URL="http://localhost:9000/v1"
+```
+Nota: Estas secret keys foram geradas como exemplo.
+
+Para subir os serviços:
+
+```
+make up
+```
