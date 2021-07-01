@@ -10,7 +10,7 @@ sentry_sdk.init(
 )
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split(',')
 
@@ -39,7 +39,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
 

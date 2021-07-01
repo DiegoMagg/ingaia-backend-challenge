@@ -38,7 +38,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
 
