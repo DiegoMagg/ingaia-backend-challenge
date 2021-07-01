@@ -9,8 +9,14 @@ services:
       dockerfile: ../Dockerfile
     command: pipenv run gunicorn settings.wsgi --bind 0:9010
     env_file: .env
-    network_mode: host
+    ports:
+      - 9010:9010
     image: api-cotacao:1.0.0
     restart: on-failure
     volumes:
       - .:/app
+
+networks:
+  default:
+    name: caddy-proxy
+    external: true

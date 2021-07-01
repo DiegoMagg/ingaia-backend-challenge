@@ -50,10 +50,9 @@ A definição dos serviços encontram-se nos arquivos docker-compose.yaml que s�
 
 
 
-[API_1 - Consulta](https://api-consulta.diegomagg.com.br/v1) - Esta API pode ser testado a partir do swagger.
-Após clicar no botão *"Try it out"*, digite "empreendimento x" no campo nome e clique em
-executar. O nome do empreendimento será buscado no banco de dados (sqlite) e serializado
-resultando no output:
+[API_1 - Consulta](https://api-consulta.diegomagg.com.br/v1) - Esta API pode ser testada a partir do swagger.
+Após clicar no botão *"Try it out"*, digite `empreendimento x` no campo `nome` e clique em
+executar. Uma query será executada no sqlite e o output é serializado resultando no json:
 
 
 ```json
@@ -81,8 +80,8 @@ O mesmo ocorre com o "empreendimento y":
 curl -X GET "https://api-consulta.diegomagg.com.br/v1/valor-metro-quadrado/empreendimento%20y"
 ```
 
-[API_2 - Cotação](https://api-cotacao.diegomagg.com.br/v1) Esta API pode ser testado a partir do swagger.
-Após clicar no botão *"Try it out"*, digite "empreendimento x" no campo nome e um valor numérico entre 10 e 10000*. As informações de valor do metro quadrado será requisitado da
+[API_2 - Cotação](https://api-cotacao.diegomagg.com.br/v1) Esta API pode ser testada a partir do swagger.
+Após clicar no botão *"Try it out"*, digite `empreendimento x` no campo `nome` e um valor numérico entre `10` e `10000`*. As informações de valor do metro quadrado será requisitado da
 **API_1** e o cálculo efetuado.
 
 ```json

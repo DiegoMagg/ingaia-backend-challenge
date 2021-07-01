@@ -9,7 +9,8 @@ services:
       dockerfile: ../Dockerfile
     command: pipenv run gunicorn settings.wsgi --bind 0:9000
     env_file: .env
-    network_mode: host
+    ports:
+      - 9000:9000
     image: api-consulta:1.0.0
     restart: on-failure
     volumes:
@@ -37,3 +38,8 @@ services:
       - migrations
     volumes:
       - .:/app
+
+networks:
+  default:
+    name: caddy-proxy
+    external: true
