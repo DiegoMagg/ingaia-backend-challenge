@@ -17,3 +17,10 @@ api-cotacao-down:
 
 api-cotacao-up:
 	cd ./api_cotacao && docker-compose up --build -d
+
+api-update:
+	cd ./api_consulta && docker-compose down
+	cd ./api_cotacao && docker-compose down
+	git pull
+	cd ./api_consulta && docker-compose up --build -d
+	cd ./api_cotacao && docker-compose up --build -d
