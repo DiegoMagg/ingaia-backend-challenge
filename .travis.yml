@@ -5,14 +5,12 @@ install:
   - cd api_consulta
   - pipenv install --dev
   - pipenv run ./manage.py migrate
-  - mkdir staticfiles
   - cd ..
-  - cd api_calculo
+  - cd api_cotacao
   - pipenv install --dev
   - pipenv run ./manage.py migrate
-  - mkdir staticfile
 script:
-  - pipenv run manage.py test
+  - pipenv run python manage.py test
   - cd ..
   - cd api_consulta
-  - pipenv run manage.py test
+  - pipenv run python manage.py test
