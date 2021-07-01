@@ -22,26 +22,26 @@ A definição dos serviços encontram-se nos arquivos docker-compose.yaml que s�
 3. **fixtures** - Popula o banco de dados com exemplos para teste dos endpoints.
 
 ## Variáveis de ambiente
-|                       |                    |           |
+|       Variavel        |      Exemplos      |     Definição      |
 |-----------------------|--------------------|-----------|
 |DJANGO_SETTINGS_MODULE |`"settings.modulo"`             |Define qual *settings* usar|
 |API_VERSION            |`"v1"`                          |Define a versão da API nas urls e no Swagger|
 |DJANGO_SECRET_KEY      |`"token"`                       |Token usado pelo Django  |
 |ALLOWED_HOSTS          |`"exemplo.com,api-consulta` |*Hosts* separados por vírgula|
-|SENTRY_DSN             |`"https:/sentry.com"`|URL para monitorar erros na aplicação *online*|
+|SENTRY_DSN             |`"https:/sentry.com"`|URL para monitorar erros na aplicação *online*  (opcional)|
 |API_URL                |`"https:/api-consulta.diegomagg.com.br"`|URL *root* da api (necessário para que o swagger use HTTPS nas requisições)|
 
 # API Cotação
 1. **api-cotacao** - Servidor WSGI gunicorn para aplicação.
 
 ## Variáveis de ambiente (API_2)
-|                       |                    |           |
+|       Variavel        |   Exemplos         |     Definição      |
 |-----------------------|--------------------|-----------|
 |DJANGO_SETTINGS_MODULE |`"settings.modulo"`             |Define qual *settings* usar|
 |API_VERSION            |`"v1"`                          |Define a versão da API nas urls e no Swagger|
 |DJANGO_SECRET_KEY      |`"token"`                       |*Token* usado pelo Django  |
 |ALLOWED_HOSTS          |`"exemplo.com,api-cotacao"` |*Hosts* separados por vírgula|
-|SENTRY_DSN             |`"https:/sentry.com"`|URL para monitorar erros na aplicação *online*|
+|SENTRY_DSN             |`"https:/sentry.com"`|URL para monitorar erros na aplicação *online*  (opcional)|
 |API_URL                |`"https:/api-cotacao.diegomagg.com.br"`|URL *root* da api (necessário para que o swagger use HTTPS nas requisições)|
 |API_CONSULTA_URL|`"http://api-consulta"` |URL base onde a *view* de cotação busca as informações da **API_1**|
 
@@ -105,37 +105,35 @@ O mesmo se aplica caso o valor seja maior que 10000
 
 
 # Rodando as aplicações local
-```
+```bash
 $ git clone git@github.com:DiegoMagg/ingaia-backend-challenge.git
-$ cd ingaia-backend-challenge && touch api_consulta/.env && touch api_cotacao/.env
+$ cd ingaia-backend-challenge
 ```
 
-api_consulta/.env
-
-```
-DJANGO_SETTINGS_MODULE=settings.test
+```bash
+$ echo 'DJANGO_SETTINGS_MODULE="settings.test"
 API_VERSION="v1"
 DJANGO_SECRET_KEY="^u$2f)9(@#a591w3i+b+i0+m30d86zkcn(v)t4!j)3-)mc21o="
 ALLOWED_HOSTS="localhost"
 SENTRY_DSN=""
-API_URL='http://localhost:9000'
+API_URL="http://localhost:9000"
+' >> api_consulta/.env
 ```
 
-api_cotacao/.env
-
-```
-DJANGO_SETTINGS_MODULE=settings.test
+```bash
+$ echo 'DJANGO_SETTINGS_MODULE="settings.test"
 API_VERSION="v1"
 DJANGO_SECRET_KEY="t$%hq&oofr8g@a#332rd542bnj(h6dwx#da7+f0k)-)5-u_2=@"
 ALLOWED_HOSTS="localhost"
 SENTRY_DSN=""
 API_URL="http://localhost:9010"
 API_CONSULTA_URL="http://localhost:9000/v1"
+' >> api_cotacao/.env
 ```
 Nota: Estas secret keys foram geradas como exemplo.
 
 Para subir os serviços:
 
-```
+```bash
 make up
 ```
