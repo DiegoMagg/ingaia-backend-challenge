@@ -96,7 +96,7 @@ Após clicar no botão *"Try it out"*, digite `empreendimento x` no campo `nome`
 ```json
 {
   "quantidade_metros_quadrados": [
-    "Certifque-se de que este valor seja maior ou igual a 10."
+    "Certifique-se de que este valor seja maior ou igual a 10."
   ]
 }
 ```

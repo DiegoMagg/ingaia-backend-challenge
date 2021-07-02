@@ -8,9 +8,16 @@ from api.serializers import CotacaoMetroQuadradoSerializer
 
 class SerializersTestCase(TestCase):
 
-    def test_serializer_deve_lancar_erro_caso_valor_informado_nao_permitido(self):
+    def test_deve_lancar_erro_caso_valor_metros_seja_inferior_ao_permitido(self):
         serializer = CotacaoMetroQuadradoSerializer(
             data={'nome': 'teste', 'quantidade_metros_quadrados': 1},
+        )
+        self.assertFalse(serializer.is_valid())
+        self.assertTrue('quantidade_metros_quadrados' in serializer.errors.keys())
+
+    def test_deve_lancar_erro_caso_valor_metros_seja_superior_ao_permitido(self):
+        serializer = CotacaoMetroQuadradoSerializer(
+            data={'nome': 'teste', 'quantidade_metros_quadrados': 10001},
         )
         self.assertFalse(serializer.is_valid())
         self.assertTrue('quantidade_metros_quadrados' in serializer.errors.keys())
@@ -50,7 +57,6 @@ class IntegracaoTestCase(TestCase):
     @patch('requests.get')
     def test_endpoint_cotacao_deve_retornar_404_quando_registro_inexiste(self, mock_get):
         mock_get.return_value.ok = False
-        mock_get.return_value.json.return_value = {'detail': 'Não encontrado'}
         serializer = CotacaoMetroQuadradoSerializer(
             data={'nome': 'teste', 'quantidade_metros_quadrados': 100.00},
         )
